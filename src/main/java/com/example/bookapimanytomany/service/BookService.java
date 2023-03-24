@@ -1,6 +1,7 @@
 package com.example.bookapimanytomany.service;
 
 import com.example.bookapimanytomany.model.Book;
+import com.example.bookapimanytomany.model.BookDto;
 import com.example.bookapimanytomany.repository.BookDaoJPA;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,10 @@ public class BookService {
 
     public Optional<Book> findById(Long id) {
         return bookDaoJPA.findById(id);
+    }
+
+    public void save(BookDto book) {
+        Book book1 = new Book(null, book.getTitle(), null);
+        bookDaoJPA.save(book1);
     }
 }

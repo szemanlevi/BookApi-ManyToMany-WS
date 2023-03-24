@@ -1,6 +1,7 @@
 package com.example.bookapimanytomany.service;
 
 import com.example.bookapimanytomany.model.Author;
+import com.example.bookapimanytomany.model.AuthorDto;
 import com.example.bookapimanytomany.repository.AuthorDaoJPA;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,10 @@ public class AuthorService {
 
     public Optional<Author> findById(Long id) {
         return authorDaoJPA.findById(id);
+    }
+
+    public void save(AuthorDto author) {
+        Author author1 = new Author(null, author.getName(), null);
+        authorDaoJPA.save(author1);
     }
 }
