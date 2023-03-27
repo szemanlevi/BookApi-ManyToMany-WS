@@ -36,7 +36,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public void saveBook(@RequestBody BookDto book) {
-        bookService.save(book);
+    public void saveBook(@RequestBody BookDto bookDto) {
+        bookService.save(bookDto);
     }
 }

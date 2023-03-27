@@ -36,7 +36,7 @@ public class AuthorController {
 
     @PostMapping("/authors")
     @Parameter(description = "this saves author to database")
-    public void saveAuthor(@RequestBody AuthorDto author) {
-        authorService.save(author);
+    public void saveAuthor(@RequestBody AuthorDto authorDto) {
+        authorService.save(authorDto);
     }
 }
