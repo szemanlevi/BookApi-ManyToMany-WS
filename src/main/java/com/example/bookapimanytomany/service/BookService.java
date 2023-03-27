@@ -1,7 +1,9 @@
 package com.example.bookapimanytomany.service;
 
+import com.example.bookapimanytomany.model.Author;
 import com.example.bookapimanytomany.model.Book;
 import com.example.bookapimanytomany.model.BookDto;
+import com.example.bookapimanytomany.repository.AuthorDaoJPA;
 import com.example.bookapimanytomany.repository.BookDaoJPA;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,12 @@ import java.util.Optional;
 public class BookService {
 
     private final BookDaoJPA bookDaoJPA;
+    private final AuthorDaoJPA authorDaoJPA;
 
-    public BookService(BookDaoJPA bookDaoJPA) {
+    public BookService(BookDaoJPA bookDaoJPA,
+                       AuthorDaoJPA authorDaoJPA) {
         this.bookDaoJPA = bookDaoJPA;
+        this.authorDaoJPA = authorDaoJPA;
     }
 
     public List<Book> findAll() {
@@ -25,8 +30,13 @@ public class BookService {
         return bookDaoJPA.findById(id);
     }
 
-    public void save(BookDto book) {
-        Book book1 = new Book(null, book.getTitle(), null);
+    public void save(BookDto bookDto) {
+        List<Author> authors = bookDto.getAuthorIdList()
+                .stream()
+                .flatMap(id -> authorDaoJPA.findById(id).stream())
+                .toList();
+        Book book1 = new Book(null, bookDto.getTitle(), authors);
+        authors.forEach(author -> author.getBookList().add(book1));
         bookDaoJPA.save(book1);
     }
 }
