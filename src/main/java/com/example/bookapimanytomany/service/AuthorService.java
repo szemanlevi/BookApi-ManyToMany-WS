@@ -34,7 +34,7 @@ public class AuthorService {
                 .stream()
                 .flatMap(id -> bookDaoJPA.findById(id).stream())
                 .toList();
-        Author author1 = new Author(null, authorDto.getName(), books);
-        authorDaoJPA.save(author1);
+        Author author = new Author(null, authorDto.getName(), books);
+        authorDaoJPA.save(author);
     }
 }

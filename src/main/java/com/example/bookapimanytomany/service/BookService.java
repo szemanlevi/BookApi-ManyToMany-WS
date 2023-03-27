@@ -35,8 +35,8 @@ public class BookService {
                 .stream()
                 .flatMap(id -> authorDaoJPA.findById(id).stream())
                 .toList();
-        Book book1 = new Book(null, bookDto.getTitle(), authors);
-        authors.forEach(author -> author.getBookList().add(book1));
-        bookDaoJPA.save(book1);
+        Book book = new Book(null, bookDto.getTitle(), authors);
+        authors.forEach(author -> author.getBookList().add(book));
+        bookDaoJPA.save(book);
     }
 }
