@@ -6,6 +6,7 @@ import com.example.bookapimanytomany.model.BookDto;
 import com.example.bookapimanytomany.repository.AuthorDaoJPA;
 import com.example.bookapimanytomany.repository.BookDaoJPA;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,5 +39,17 @@ public class BookService {
         Book book = new Book(null, bookDto.getTitle(), authors);
         authors.forEach(author -> author.getBookList().add(book));
         bookDaoJPA.save(book);
+    }
+
+    public void delete(Long id) {
+        Book book = bookDaoJPA.findById(id).orElseThrow();
+        book.getAuthorList()
+                .forEach(author -> {
+                    author.getBookList().removeIf(book1 -> book1.getId().equals(id));
+                    authorDaoJPA.save(author);
+                });
+        book.setAuthorList(List.of());
+        bookDaoJPA.save(book);
+        bookDaoJPA.deleteById(id);
     }
 }
