@@ -14,12 +14,6 @@ import java.util.Optional;
 public class AuthorController {
     private final AuthorService authorService;
 
-//    7. Add an endpoint to save new books, authors
-//Add save to service
-//Add @PostMapping handling method to controllers
-//How can you handle adding authors to books and vica versa?
-//Use Postman to send randomly books with randomly generated titles, and authors with random names
-
     public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
