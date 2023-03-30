@@ -58,3 +58,42 @@ Author:
 ### 6. Can you research what the famous 'N+1 query problem' is? *(Optional)*
 - Can you see it in this project?
 - Can you fix it?
+
+### 7. Add an endpoint to save new books, authors
+- Add `save` to service
+- Add `@PostMapping` handling method to controllers
+- How can you handle adding authors to books and vica versa?
+- Use Postman to send randomly books with randomly generated titles, and authors with random names
+
+### 8. Document your API with Swagger
+- Start [HERE](https://springdoc.org/)
+
+### 9. Add DELETE book endpoints
+
+### 10. Test it with Postman
+- send GET for /books
+- test if status is 200
+- save response length
+- send DELETE /book/{id}
+- send GET for /books
+- check response length is smaller than before
+
+### 11. Test from command line
+- install npm
+- install newman as global dependency
+- export collection from Postman
+- run it with newman
+
+### 12. Add validation
+- add validation dependency
+- use a validation annotation on the title of the `Book` entity
+- validate incoming `POST`-s for new books, explore different ways to handle validation errors (3 ways came up already)
+- settle with the solution using the `@ExceptionHandler` annotations
+- in the json response, send the number of errors, with the name of the fields with their validation messages
+- add custom error message for this field
+- create a custom validator `NoSingleWord`, that disallows adding a String with a single word
+- allow only multiple word titles for `Book` entity
+
+### 13. Add i18n
+- [spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.internationalization)
+- [stackoverflow](https://stackoverflow.com/questions/55220453/how-to-i18n-a-spring-restcontroller-on-java-validation-constraints)

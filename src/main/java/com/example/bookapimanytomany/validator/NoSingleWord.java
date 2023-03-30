@@ -1,4 +1,4 @@
-package com.example.bookapimanytomany.controller;
+package com.example.bookapimanytomany.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

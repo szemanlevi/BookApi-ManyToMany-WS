@@ -1,4 +1,6 @@
-package com.example.bookapimanytomany.controller;
+package com.example.bookapimanytomany.validator;
+
+import com.example.bookapimanytomany.validator.NoSingleWord;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
